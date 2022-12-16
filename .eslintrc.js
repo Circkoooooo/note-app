@@ -32,5 +32,7 @@ module.exports = {
 		semi: ['error', 'never'],
 		'react/jsx-filename-extension': 'off',
 		'import/extensions': 'off',
+		'no-unused-vars': ['warn'],
+		'react/no-array-index-key': 'off',
 	},
 }
