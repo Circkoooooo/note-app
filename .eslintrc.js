@@ -34,8 +34,10 @@ module.exports = {
 		'import/extensions': 'off',
 		'no-unused-vars': ['warn'],
 		'arrow-body-style': 'off',
+		'import/prefer-default-export': 'off',
 		'react/no-array-index-key': 'off',
 		'react/react-in-jsx-scope': 'off',
 		'react/function-component-definition': 'off',
+		'react/require-default-props': 'off',
 	},
 }
