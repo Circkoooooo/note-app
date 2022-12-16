@@ -18,5 +18,5 @@ export default (configs: SiderRouterConfigsType[]) => {
 		navigate(path)
 	}, [currentKey])
 
-	return [currentKey, setCurrentKey] as [string, typeof setCurrentKey]
+	return setCurrentKey
 }

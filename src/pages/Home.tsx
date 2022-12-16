@@ -23,10 +23,28 @@ const siderRouterConfigs = [
 	{
 		key: '2',
 		icon: <UserOutlined />,
-		label: '笔记',
+		label: '测试',
 		route: {
 			path: '/test',
-			element: <Link to='/test'>124124124</Link>,
+			element: <div>ozmxzckz c</div>,
+		},
+	},
+	{
+		key: '3',
+		icon: <UserOutlined />,
+		label: '帮助',
+		route: {
+			path: '/help',
+			element: <div>t5555</div>,
+		},
+	},
+	{
+		key: '5',
+		icon: <UserOutlined />,
+		label: '设置',
+		route: {
+			path: '/setting',
+			element: <div>123213</div>,
 		},
 	},
 ]
@@ -47,7 +65,7 @@ const siderItems = siderRouterConfigs.map(({ key, icon, label }) => ({
 
 export default function Home() {
 	const [collapsed, setCollapsed] = useState(false)
-	const [currentKey, setCurrentKey] = useSider(
+	const setCurrentKey = useSider(
 		siderRouterConfigs as SiderRouterConfigsType[]
 	)
 	const {
