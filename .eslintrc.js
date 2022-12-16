@@ -33,6 +33,9 @@ module.exports = {
 		'react/jsx-filename-extension': 'off',
 		'import/extensions': 'off',
 		'no-unused-vars': ['warn'],
+		'arrow-body-style': 'off',
 		'react/no-array-index-key': 'off',
+		'react/react-in-jsx-scope': 'off',
+		'react/function-component-definition': 'off',
 	},
 }
