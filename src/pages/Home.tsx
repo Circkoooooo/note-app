@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { Layout, Menu, theme } from 'antd'
-import { Route, Routes, RouteProps, Link } from 'react-router-dom'
+import { Route, Routes, RouteProps } from 'react-router-dom'
 import {
 	MenuFoldOutlined,
 	MenuUnfoldOutlined,
 	UserOutlined,
 } from '@ant-design/icons'
 import useSider, { SiderRouterConfigsType } from '../hooks/useSider'
+import Note from '../components/Note'
 
 const { Header, Sider, Content } = Layout
 
@@ -17,7 +18,7 @@ const siderRouterConfigs = [
 		label: '笔记',
 		route: {
 			path: '/',
-			element: <Link to='/'>123</Link>,
+			element: <Note />,
 		},
 	},
 	{
@@ -104,6 +105,7 @@ export default function Home() {
 						padding: 24,
 						minHeight: 280,
 						background: colorBgContainer,
+						overflow: 'auto',
 					}}
 				>
 					<Routes>
