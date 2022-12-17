@@ -1,15 +1,11 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Layout, Menu, theme } from 'antd'
 import { Route, Routes, RouteProps } from 'react-router-dom'
-import {
-	MenuFoldOutlined,
-	MenuUnfoldOutlined,
-	UserOutlined,
-} from '@ant-design/icons'
+import { UserOutlined } from '@ant-design/icons'
 import useSider, { SiderRouterConfigsType } from '../hooks/useSider'
 import Note from '../components/Note'
 
-const { Header, Sider, Content } = Layout
+const { Sider, Content } = Layout
 
 const siderRouterConfigs = [
 	{
@@ -90,15 +86,6 @@ export default function Home() {
 				/>
 			</Sider>
 			<Layout className='site-layout'>
-				<Header style={{ padding: 0, background: colorBgContainer }}>
-					{React.createElement(
-						collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
-						{
-							className: 'trigger',
-							onClick: () => setCollapsed(!collapsed),
-						}
-					)}
-				</Header>
 				<Content
 					style={{
 						margin: '24px 16px',
