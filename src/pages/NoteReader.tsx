@@ -1,10 +1,14 @@
 import { Layout } from 'antd'
 import { Content, Header } from 'antd/es/layout/layout'
+// import ReactMarkdown from 'react-markdown'
 import React from 'react'
 import Logo from '../components/Logo'
+import Editor from '../components/Editor/EditorContainer'
 
-interface NoteReaderType {}
-const NoteReader: React.FC<NoteReaderType> = () => {
+interface NoteReaderType {
+	rawText?: string
+}
+const NoteReader: React.FC<NoteReaderType> = ({ rawText }) => {
 	return (
 		<Layout
 			className='layout'
@@ -15,8 +19,17 @@ const NoteReader: React.FC<NoteReaderType> = () => {
 			<Header>
 				<Logo direction='row' />
 			</Header>
-			<Content style={{ padding: '0 50px' }}>
-				<div>12</div>
+			<Content
+				style={{
+					display: 'flex',
+				}}
+			>
+				<Editor
+					rawText={rawText}
+					style={{
+						flex: '1',
+					}}
+				/>
 			</Content>
 		</Layout>
 	)
