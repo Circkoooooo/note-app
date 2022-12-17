@@ -22,6 +22,7 @@ const Logo: React.FC<LogoProps> = ({ direction }) => {
 	const isRow = useMemo(() => {
 		return direction === 'row'
 	}, [direction])
+
 	return (
 		<LogoContainer
 			style={{
