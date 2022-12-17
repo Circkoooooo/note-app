@@ -4,6 +4,7 @@ import { Route, Routes, RouteProps } from 'react-router-dom'
 import { UserOutlined } from '@ant-design/icons'
 import useSider, { SiderRouterConfigsType } from '../hooks/useSider'
 import Note from '../components/Note'
+import Logo from '../components/Logo'
 
 const { Sider, Content } = Layout
 
@@ -69,9 +70,6 @@ export default function Home() {
 	const setCurrentKey = useSider(
 		siderRouterConfigs as SiderRouterConfigsType[]
 	)
-	const {
-		token: { colorBgContainer },
-	} = theme.useToken()
 
 	return (
 		<Layout
@@ -80,7 +78,7 @@ export default function Home() {
 			}}
 		>
 			<Sider trigger={null} collapsible collapsed={collapsed}>
-				<div className='logo' />
+				<Logo direction='column' />
 				<Menu
 					theme='dark'
 					mode='inline'
@@ -95,7 +93,6 @@ export default function Home() {
 						margin: '24px 16px',
 						padding: 24,
 						minHeight: 280,
-						background: colorBgContainer,
 						overflow: 'auto',
 					}}
 				>
