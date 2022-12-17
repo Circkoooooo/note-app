@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Layout, Menu, theme } from 'antd'
+import { Layout, Menu } from 'antd'
 import { Route, Routes, RouteProps } from 'react-router-dom'
 import { UserOutlined } from '@ant-design/icons'
 import useSider, { SiderRouterConfigsType } from '../hooks/useSider'
