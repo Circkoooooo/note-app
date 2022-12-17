@@ -38,6 +38,8 @@
 		"@types/react-dom": "^18.0.9",
 		"@types/styled-components": "^5.1.26",
 		"antd": "^5.0.7",
+		"idb": "^7.1.1",
+		"md-editor-rt": "^2.6.0",
 		"prettier": "^2.8.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
