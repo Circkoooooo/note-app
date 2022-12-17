@@ -66,7 +66,7 @@ const siderItems = siderRouterConfigs.map(({ key, icon, label }) => ({
 }))
 
 export default function Home() {
-	const [collapsed, setCollapsed] = useState(false)
+	const [collapsed] = useState(false)
 	const setCurrentKey = useSider(
 		siderRouterConfigs as SiderRouterConfigsType[]
 	)

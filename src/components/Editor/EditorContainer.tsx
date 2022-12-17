@@ -11,9 +11,7 @@ interface EditorProps {
 const Editor: React.FC<EditorProps> = ({ rawText, style }) => {
 	const [text, setText] = useState(rawText as string | '')
 
-	useEffect(() => {
-		console.log(text)
-	}, [text])
+	useEffect(() => {}, [text])
 	return (
 		<EditorContainer style={style}>
 			<MdEditor
