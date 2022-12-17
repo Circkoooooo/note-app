@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import NoteList, { NoteType } from './NoteList'
 
 const mockNotes: NoteType[] = [
@@ -28,8 +29,9 @@ const mockNotes: NoteType[] = [
 ]
 
 const Note = () => {
+	const navigate = useNavigate()
 	const selectNote = (note: NoteType) => {
-		console.log(note)
+		navigate(`/read/${note.id}`)
 	}
 
 	return (
