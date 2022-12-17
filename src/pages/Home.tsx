@@ -7,14 +7,18 @@ import Note from '../components/Note'
 
 const { Sider, Content } = Layout
 
-const siderRouterConfigs = [
+const siderRouterConfigs: {
+	[key: string]: any
+	route: RouteProps
+}[] = [
 	{
 		key: '1',
 		icon: <UserOutlined />,
 		label: '笔记',
 		route: {
-			path: '/',
+			path: '',
 			element: <Note />,
+			index: true,
 		},
 	},
 	{
@@ -22,7 +26,7 @@ const siderRouterConfigs = [
 		icon: <UserOutlined />,
 		label: '测试',
 		route: {
-			path: '/test',
+			path: 'test',
 			element: <div>ozmxzckz c</div>,
 		},
 	},
@@ -31,7 +35,7 @@ const siderRouterConfigs = [
 		icon: <UserOutlined />,
 		label: '帮助',
 		route: {
-			path: '/help',
+			path: 'help',
 			element: <div>t5555</div>,
 		},
 	},
@@ -40,7 +44,7 @@ const siderRouterConfigs = [
 		icon: <UserOutlined />,
 		label: '设置',
 		route: {
-			path: '/setting',
+			path: 'setting',
 			element: <div>123213</div>,
 		},
 	},
@@ -97,11 +101,7 @@ export default function Home() {
 				>
 					<Routes>
 						{routerConfigs.map((routerConfig, index) => (
-							<Route
-								key={index}
-								path={routerConfig.path}
-								element={routerConfig.element}
-							/>
+							<Route key={index} {...routerConfig} />
 						))}
 					</Routes>
 				</Content>
