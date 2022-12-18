@@ -26,14 +26,14 @@ function App() {
 				setNoteDb(db)
 			}
 		})()
-	}, [])
+	})
 
 	return (
 		<IDBStoreContext.Provider value={noteDb}>
 			<Routes>
 				<Route path='/' element={<Redirect to='/home' />} />
 				<Route path='/home/*' element={<Home />} />
-				<Route path='/read/:id' element={<NoteReader />} />
+				<Route path='/note' element={<NoteReader />} />
 			</Routes>
 		</IDBStoreContext.Provider>
 	)
