@@ -1,6 +1,5 @@
 import { Layout } from 'antd'
 import { Content, Header } from 'antd/es/layout/layout'
-// import ReactMarkdown from 'react-markdown'
 import React from 'react'
 import Logo from '../components/Logo'
 import Editor from '../components/Editor/EditorContainer'
