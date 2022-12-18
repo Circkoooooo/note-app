@@ -1,13 +1,9 @@
 import { Layout } from 'antd'
 import { Content, Header } from 'antd/es/layout/layout'
-import React from 'react'
 import Logo from '../components/Logo'
 import Editor from '../components/Editor/EditorContainer'
 
-interface NoteReaderType {
-	rawText?: string
-}
-const NoteReader: React.FC<NoteReaderType> = ({ rawText }) => {
+const NoteReader = () => {
 	return (
 		<Layout
 			className='layout'
@@ -24,7 +20,6 @@ const NoteReader: React.FC<NoteReaderType> = ({ rawText }) => {
 				}}
 			>
 				<Editor
-					rawText={rawText}
 					style={{
 						flex: '1',
 					}}

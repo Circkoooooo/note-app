@@ -1,4 +1,5 @@
-import React, { useCallback } from 'react'
+import React from 'react'
+import { NoteType } from '../../types/Note'
 import {
 	NoteContainer,
 	NoteTag,
@@ -6,33 +7,19 @@ import {
 	NoteTitle,
 } from './NoteListStyled'
 
-export type NoteItemType = {
-	title: string
-	markdownRaw: string
-	tags?: string[]
-}
-
-export type NoteType = {
-	id: string
-} & NoteItemType
-
 interface NoteListProps {
 	notes: NoteType[]
 	onSelectNote?: (note: NoteType) => void
 }
 
 const NoteList: React.FC<NoteListProps> = ({ notes, onSelectNote }) => {
-	const handleSelectNote = useCallback(
-		(note: NoteType) => (onSelectNote ? onSelectNote(note) : null),
-		[onSelectNote]
-	)
 	return (
 		<>
 			{notes.map((note) => {
 				return (
 					<NoteContainer
 						key={note.id}
-						onClick={() => handleSelectNote(note)}
+						onClick={() => onSelectNote && onSelectNote(note)}
 					>
 						<NoteTitle>{note.title}</NoteTitle>
 						<NoteTagContainer>
