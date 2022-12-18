@@ -1,15 +1,18 @@
 import { IDBPDatabase, openDB } from 'idb'
+import { NoteType } from '../types/Note'
 
-interface OperateParams<P = {}> {
-	(props: P): any
+type ValidKey = 'string'
+interface OperateParams<P, T> {
+	(props: P): Promise<T>
 }
-type OP<P = {}> = OperateParams<P>
+
+type OP<P, T = any> = OperateParams<P, T>
 
 export type IDBOperate = {
 	db: IDBPDatabase
 	storeName: string
-	key: string
-	value: string
+	key?: string
+	value?: NoteType
 }
 
 export const getIdbDatabase = async (
@@ -20,7 +23,7 @@ export const getIdbDatabase = async (
 	const db = await openDB(databaseName, version, {
 		upgrade(database) {
 			if (!database.objectStoreNames.contains(storeName)) {
-				database.createObjectStore(storeName)
+				database.createObjectStore(storeName, { autoIncrement: true })
 			}
 		},
 	})
@@ -42,6 +45,7 @@ export const IDBAddKeyValue: OP<IDBOperate> = async ({
 	key,
 	value,
 }) => {
+	if (!key || !value) return false
 	if (await IDBIsKeyValueExist(db, storeName, key)) return false
 	await db.add(storeName, value, key)
 	return true
@@ -52,16 +56,45 @@ export const IDBDeleteKeyValue: OP<IDBOperate> = async ({
 	storeName,
 	key,
 }) => {
+	if (!key) return false
 	if (await IDBIsKeyValueExist(db, storeName, key)) return false
 	await db.delete(storeName, key)
 	return true
 }
 
-export const IDBGetOneByKey: OP<IDBOperate> = async ({
+export const IDBGetOneByKey: OP<IDBOperate, NoteType> = ({
 	db,
 	storeName,
 	key,
 }) => {
-	const value = await db.get(storeName, key)
-	return value
+	return new Promise<NoteType>((resolve, reject) => {
+		if (!key) {
+			reject(new Error('no key'))
+			return
+		}
+		db.get(storeName, key).then((value) => {
+			resolve(value)
+		})
+	})
+}
+
+export const IDBPutOne: OP<IDBOperate, ValidKey> = ({
+	db,
+	storeName,
+	key,
+	value,
+}) => {
+	return new Promise<ValidKey>((resolve) => {
+		db.put(storeName, value, key).then((res) => {
+			resolve(res as ValidKey)
+		})
+	})
+}
+
+export const IDBGetAll: OP<IDBOperate, NoteType[]> = ({ db, storeName }) => {
+	return new Promise<NoteType[]>((resolve) => {
+		db.getAll(storeName).then((res) => {
+			resolve(res)
+		})
+	})
 }
