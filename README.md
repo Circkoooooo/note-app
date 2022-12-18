@@ -1,6 +1,9 @@
 # NoteApp
 
-This is a off-the-line note application that working in your browser.
+This is a off-the-line application to manage your notes.
+
+It have some ablities to makes the note general, such as `export note to Markdown`,`export note to Word` even `to excel`, and transform function such as `transform word to note`. 
+Actrually, It really like a common office application.
 
 ## Quick start
 
@@ -18,11 +21,16 @@ npm run start
 
 ## What it implements?
 
--   [ ] 笔记主页
+-   [ ] Note Home
+    -   [x] List Notes
+    -   [ ] Search
+        -   [ ] Search by title
+        -   [ ] Search by content
+        -   [ ] Search by tags
+    - [ ] Add Note
+    - [x] Note detail
+      - [x] Fetch data from indexdb
+      - [ ] Delete Note
+      - [x] Modify Note
+        - [ ] useThrottle
 
-    -   [ ] 搜索
-        -   [ ] 根据名字搜索
-        -   [ ] 根据内容搜索
-    -   [ ] 根据标签筛选
-
--   [ ] 添加笔记
