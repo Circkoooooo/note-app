@@ -47,7 +47,7 @@ export const IDBAddKeyValue: OP<IDBOperate> = async ({
 	return true
 }
 
-export const deleteKeyValue: OP<IDBOperate> = async ({
+export const IDBDeleteKeyValue: OP<IDBOperate> = async ({
 	db,
 	storeName,
 	key,
