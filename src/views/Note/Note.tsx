@@ -1,4 +1,5 @@
-import { Button } from 'antd'
+import { v4 } from 'uuid'
+import { Button, Input, message, Modal } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -12,12 +13,26 @@ import IDBStoreContext, {
 import { getIdbDatabase, IDBGetAll } from '../../lib/idb'
 import { NoteType } from '../../types/Note'
 
+const NOTE_EDIT = '/note/edit'
+const NOTE_PREVIEW = '/note/preview'
+
 const Note = () => {
 	const [notes, setNotes] = useState<NoteType[]>([])
 	const [db, setDb] = useState<IDBStoreDatabaseType>()
+	const [isModalOpen, setIsModalOpen] = useState(false)
+	const [newNoteTitle, setNewNoteTitle] = useState('')
+
 	const navigate = useNavigate()
 	const selectNote = (note: NoteType) => {
-		navigate(`/note?id=${note.id}`)
+		navigate(`${NOTE_PREVIEW}?id=${note.id}`)
+	}
+
+	const editNote = (id: string) => {
+		navigate(`${NOTE_EDIT}?id=${id}`, {
+			state: {
+				title: newNoteTitle,
+			},
+		})
 	}
 
 	const noteDb = useContext(IDBStoreContext)
@@ -31,6 +46,7 @@ const Note = () => {
 			}
 		})()
 	}, [])
+
 	useEffect(() => {
 		if (db) {
 			IDBGetAll({
@@ -42,15 +58,47 @@ const Note = () => {
 		}
 	}, [db])
 
+	const newNote = () => {
+		setIsModalOpen(true)
+	}
+	const handleOk = () => {
+		if (newNoteTitle.length === 0) {
+			return
+		}
+		editNote(v4())
+		setIsModalOpen(false)
+		setNewNoteTitle('')
+	}
+	const handleCancel = () => {
+		setIsModalOpen(false)
+	}
+
 	return (
 		<>
-			<MenuGroup elementSpace={8} split={[1, 2, 1]}>
-				<Button icon={<PlusOutlined />}>新建笔记</Button>
-				<Button icon={<PlusOutlined />}>2新建笔记</Button>
-				<Button icon={<PlusOutlined />}>新建笔记</Button>
-				<Button icon={<PlusOutlined />}>2新建笔记</Button>
+			<MenuGroup elementSpace={8} split={[1]}>
+				<Button icon={<PlusOutlined />} onClick={newNote}>
+					新建笔记
+				</Button>
 			</MenuGroup>
 			<NoteList notes={notes} onSelectNote={(note) => selectNote(note)} />
+			<Modal
+				title='新笔记标题'
+				open={isModalOpen}
+				onOk={handleOk}
+				onCancel={handleCancel}
+				okText='确认'
+			>
+				<Input
+					value={newNoteTitle}
+					showCount
+					allowClear
+					maxLength={30}
+					status={newNoteTitle.length === 0 ? 'error' : ''}
+					onChange={(event) => {
+						setNewNoteTitle(event.currentTarget.value)
+					}}
+				/>
+			</Modal>
 		</>
 	)
 }

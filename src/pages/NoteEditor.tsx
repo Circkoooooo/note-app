@@ -1,9 +1,9 @@
 import { Layout } from 'antd'
 import { Content, Header } from 'antd/es/layout/layout'
 import Logo from '../components/Logo'
-import Editor from '../components/Editor/EditorContainer'
+import Editor from '../components/Editor/Editor'
 
-const NoteReader = () => {
+const NoteEditor = () => {
 	return (
 		<Layout
 			className='layout'
@@ -29,4 +29,4 @@ const NoteReader = () => {
 	)
 }
 
-export default NoteReader
+export default NoteEditor
