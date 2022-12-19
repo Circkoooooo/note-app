@@ -27,10 +27,11 @@ npm run start
         -   [ ] Search by title
         -   [ ] Search by content
         -   [ ] Search by tags
-    - [ ] Add Note
+    - [x] Add Note
     - [x] Note detail
       - [x] Fetch data from indexdb
       - [ ] Delete Note
       - [x] Modify Note
-        - [ ] useThrottle
+        - [ ] Save note manually
+        - [ ] Autosave
 
