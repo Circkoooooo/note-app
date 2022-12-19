@@ -30,6 +30,7 @@ module.exports = {
 		indent: ['error', 'tab'],
 		quotes: ['error', 'single'],
 		semi: ['error', 'never'],
+		"no-console":"off",
 		'react/jsx-filename-extension': 'off',
 		'import/extensions': 'off',
 		'no-unused-vars': ['warn'],
