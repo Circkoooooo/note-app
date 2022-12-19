@@ -1,7 +1,7 @@
 import { IDBPDatabase, openDB } from 'idb'
 import { NoteType } from '../types/Note'
 
-type ValidKey = 'string'
+type ValidKey = number | string | Date
 interface OperateParams<P, T> {
 	(props: P): Promise<T>
 }
@@ -11,7 +11,7 @@ type OP<P, T = any> = OperateParams<P, T>
 export type IDBOperate = {
 	db: IDBPDatabase
 	storeName: string
-	key?: string
+	key?: ValidKey
 	value?: NoteType
 }
 
@@ -30,12 +30,12 @@ export const getIdbDatabase = async (
 	return db
 }
 
-export const IDBIsKeyValueExist = async (
-	db: IDBPDatabase<any> | any,
-	storeName: string,
-	key: string
-) => {
-	const isExist = await db.get(storeName, key)
+export const IDBIsKeyValueExist: OP<IDBOperate> = async ({
+	db,
+	storeName,
+	key,
+}) => {
+	const isExist = await db.get(storeName, key as unknown as any)
 	return isExist
 }
 
@@ -46,7 +46,14 @@ export const IDBAddKeyValue: OP<IDBOperate> = async ({
 	value,
 }) => {
 	if (!key || !value) return false
-	if (await IDBIsKeyValueExist(db, storeName, key)) return false
+	if (
+		await IDBIsKeyValueExist({
+			db,
+			storeName,
+			key,
+		})
+	)
+		return false
 	await db.add(storeName, value, key)
 	return true
 }
@@ -57,7 +64,14 @@ export const IDBDeleteKeyValue: OP<IDBOperate> = async ({
 	key,
 }) => {
 	if (!key) return false
-	if (await IDBIsKeyValueExist(db, storeName, key)) return false
+	if (
+		await IDBIsKeyValueExist({
+			db,
+			storeName,
+			key,
+		})
+	)
+		return false
 	await db.delete(storeName, key)
 	return true
 }
@@ -84,10 +98,14 @@ export const IDBPutOne: OP<IDBOperate, ValidKey> = ({
 	key,
 	value,
 }) => {
-	return new Promise<ValidKey>((resolve) => {
-		db.put(storeName, value, key).then((res) => {
-			resolve(res as ValidKey)
-		})
+	return new Promise<ValidKey>((resolve, reject) => {
+		try {
+			db.put(storeName, value, key).then((res) => {
+				resolve(res as ValidKey)
+			})
+		} catch (err) {
+			reject(err)
+		}
 	})
 }
 
