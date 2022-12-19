@@ -7,7 +7,8 @@ import IDBStoreContext, {
 } from './context/IDBStoreContext'
 import { getIdbDatabase } from './lib/idb'
 import Home from './pages/Home'
-import NoteReader from './pages/NoteReader'
+import NoteEditor from './pages/NoteEditor'
+import NotePreview from './pages/NotePreview'
 
 function App() {
 	const [noteDb, setNoteDb] = useState<IDBPDatabase<unknown> | null>(null)
@@ -33,7 +34,8 @@ function App() {
 			<Routes>
 				<Route path='/' element={<Redirect to='/home' />} />
 				<Route path='/home/*' element={<Home />} />
-				<Route path='/edit' element={<NoteReader />} />
+				<Route path='/note/edit' element={<NoteEditor />} />
+				<Route path='/note/preview' element={<NotePreview />} />
 			</Routes>
 		</IDBStoreContext.Provider>
 	)
