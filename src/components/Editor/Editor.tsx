@@ -50,11 +50,8 @@ const Editor: React.FC<EditorProps> = ({ style, isPreview = false }) => {
 
 	// 获取数据流程
 	useEffect(() => {
-		if (!db) return
 		const id = new URLSearchParams(location.search).get('id')
-		if (!id || !db) {
-			return
-		}
+		if (!id || !db) return
 
 		IDBGetOneByKey({
 			db,
@@ -69,6 +66,7 @@ const Editor: React.FC<EditorProps> = ({ style, isPreview = false }) => {
 					tags: [],
 				}
 				createNoteObject(id, newNote)
+				return
 			}
 
 			if (typeof res === 'object') {
@@ -111,9 +109,7 @@ const Editor: React.FC<EditorProps> = ({ style, isPreview = false }) => {
 			})
 		})
 
-		if (!data) {
-			return
-		}
+		if (!data) return
 
 		IDBPutOne({
 			db,
