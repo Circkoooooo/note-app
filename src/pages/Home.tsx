@@ -22,7 +22,7 @@ const siderItems = siderRouterConfigs.map(({ key, icon, label }) => ({
 }))
 
 export default function Home() {
-	const [collapsed] = useState(false)
+	const [collapsed, setCollapsed] = useState(false)
 	const setCurrentKey = useSider(
 		siderRouterConfigs as SiderRouterConfigsType[]
 	)
@@ -33,7 +33,11 @@ export default function Home() {
 				height: '100%',
 			}}
 		>
-			<Sider trigger={null} collapsible collapsed={collapsed}>
+			<Sider
+				collapsible
+				collapsed={collapsed}
+				onCollapse={(value) => setCollapsed(value)}
+			>
 				<Logo direction='column' />
 				<Menu
 					theme='dark'
