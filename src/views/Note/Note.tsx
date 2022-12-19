@@ -1,5 +1,8 @@
+import { Button } from 'antd'
+import { PlusOutlined } from '@ant-design/icons'
 import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import MenuGroup from '../../components/MenuGroup/MenuGroup'
 import NoteList from '../../components/NoteList/NoteList'
 import IDBStoreContext, {
 	DATABASE_NAME,
@@ -39,7 +42,17 @@ const Note = () => {
 		}
 	}, [db])
 
-	return <NoteList notes={notes} onSelectNote={(note) => selectNote(note)} />
+	return (
+		<>
+			<MenuGroup elementSpace={8} split={[1, 2, 1]}>
+				<Button icon={<PlusOutlined />}>新建笔记</Button>
+				<Button icon={<PlusOutlined />}>2新建笔记</Button>
+				<Button icon={<PlusOutlined />}>新建笔记</Button>
+				<Button icon={<PlusOutlined />}>2新建笔记</Button>
+			</MenuGroup>
+			<NoteList notes={notes} onSelectNote={(note) => selectNote(note)} />
+		</>
+	)
 }
 
 export default Note
