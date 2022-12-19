@@ -33,7 +33,7 @@ function App() {
 			<Routes>
 				<Route path='/' element={<Redirect to='/home' />} />
 				<Route path='/home/*' element={<Home />} />
-				<Route path='/note' element={<NoteReader />} />
+				<Route path='/edit' element={<NoteReader />} />
 			</Routes>
 		</IDBStoreContext.Provider>
 	)
