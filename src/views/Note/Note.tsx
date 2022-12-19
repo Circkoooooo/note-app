@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import NoteList from '../../components/NoteList/NoteList'
 import IDBStoreContext, {
 	DATABASE_NAME,
 	IDBStoreDatabaseType,
@@ -7,7 +8,6 @@ import IDBStoreContext, {
 } from '../../context/IDBStoreContext'
 import { getIdbDatabase, IDBGetAll } from '../../lib/idb'
 import { NoteType } from '../../types/Note'
-import NoteList from './NoteList'
 
 const Note = () => {
 	const [notes, setNotes] = useState<NoteType[]>([])

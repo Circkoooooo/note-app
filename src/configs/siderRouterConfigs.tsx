@@ -1,6 +1,6 @@
 import { RouteProps } from 'react-router-dom'
 import { UserOutlined } from '@ant-design/icons'
-import Note from '../components/Note'
+import Note from '../views/Note/Note'
 
 const siderRouterConfigs: {
 	[key: string]: any

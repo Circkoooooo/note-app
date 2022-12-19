@@ -1,7 +1,7 @@
 import { Layout } from 'antd'
 import { Content, Header } from 'antd/es/layout/layout'
 import Logo from '../components/Logo'
-import Editor from '../components/Editor/EditorContainer'
+import Editor from '../views/Editor/EditorContainer'
 
 const NoteReader = () => {
 	return (
