@@ -7,7 +7,7 @@ import {
 
 interface MenuGroupProps {
 	style?: React.CSSProperties
-	children?: ReactNode[]
+	children?: ReactNode[] | ReactNode
 	elementSpace?: number
 	split?: number[]
 }
@@ -21,6 +21,7 @@ const MenuGroup: React.FC<MenuGroupProps> = ({
 	useEffect(() => {
 		if (
 			children &&
+			children instanceof Array &&
 			children.length !== split.reduce((pre, val) => pre + val)
 		) {
 			console.warn(
@@ -35,6 +36,10 @@ const MenuGroup: React.FC<MenuGroupProps> = ({
 	}, [])
 
 	const renderSplitChildren = () => {
+		if (!(children instanceof Array)) {
+			return <MenuGroupContainer>{children}</MenuGroupContainer>
+		}
+
 		if (
 			split.length === 1 ||
 			children?.length !== split.reduce((pre, val) => pre + val)
