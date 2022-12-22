@@ -13,6 +13,7 @@ const LogoContainer = styled.div`
 	color: #fff;
 	display: inline-block;
 	text-align: center;
+	white-space: nowrap;
 `
 const LogoBlock = styled.div`
 	display: flex;
