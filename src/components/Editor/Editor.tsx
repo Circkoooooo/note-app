@@ -24,7 +24,7 @@ interface EditorProps {
 }
 
 const presetEditorStyle: React.CSSProperties = {
-	padding: '0 20px 100px 20px',
+	padding: '0 20px',
 	height: '100%',
 }
 
