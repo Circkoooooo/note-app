@@ -3,7 +3,6 @@ import 'md-editor-rt/lib/style.css'
 import MdEditor from 'md-editor-rt'
 import { notification, Spin } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
-import { useLocation } from 'react-router-dom'
 import { EditorContainer } from './EditorStyled'
 import {
 	getIdbDatabase,
@@ -17,6 +16,7 @@ import IDBStoreContext, {
 	STORE_NAME,
 } from '../../context/IDBStoreContext'
 import { NoteType } from '../../types/Note'
+import { useNoteRouter } from '../../hooks/useNoteRouter'
 
 interface EditorProps {
 	style?: React.CSSProperties
@@ -34,7 +34,7 @@ const Editor: React.FC<EditorProps> = ({ style, isPreview = false }) => {
 	} as NoteType)
 	const [db, setDb] = useState<IDBStoreDatabaseType>()
 	const [isLoad, setIsLoad] = useState<boolean>(true)
-	const location = useLocation()
+	const { location, routerToHome } = useNoteRouter()
 	const noteDb = useContext(IDBStoreContext)
 
 	useEffect(() => {
@@ -58,21 +58,19 @@ const Editor: React.FC<EditorProps> = ({ style, isPreview = false }) => {
 			storeName: STORE_NAME,
 			key: id,
 		}).then((res) => {
-			if (!res && id && location.state.title) {
-				const newNote: NoteType = {
-					id,
-					title: location.state.title,
-					rawText: '测试一下下',
-					tags: [],
-				}
-				createNoteObject(id, newNote)
-				return
-			}
-
+			// 预览
 			if (typeof res === 'object') {
 				setNoteObject(res as NoteType)
 				setIsLoad(false)
+				return
 			}
+			// 新建
+			if (!id || !location.state.title) {
+				routerToHome()
+				return
+			}
+			const newNote: NoteType = location.state
+			createNoteObject(id, newNote)
 		})
 	}, [db])
 
