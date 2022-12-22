@@ -23,6 +23,11 @@ interface EditorProps {
 	isPreview?: boolean
 }
 
+const presetEditorStyle: React.CSSProperties = {
+	padding: '0 20px 100px 20px',
+	height: '100%',
+}
+
 const antIcon = <LoadingOutlined style={{ fontSize: 64 }} spin />
 const Editor: React.FC<EditorProps> = ({ style, isPreview = false }) => {
 	const [api, contextHolder] = notification.useNotification()
@@ -160,17 +165,13 @@ const Editor: React.FC<EditorProps> = ({ style, isPreview = false }) => {
 						'revoke',
 						'next',
 					]}
-					style={{
-						height: '100%',
-					}}
+					style={presetEditorStyle}
 				/>
 			) : (
 				<MdEditor
 					previewOnly
 					modelValue={noteObject.rawText}
-					style={{
-						height: '100%',
-					}}
+					style={presetEditorStyle}
 				/>
 			)}
 		</EditorContainer>
