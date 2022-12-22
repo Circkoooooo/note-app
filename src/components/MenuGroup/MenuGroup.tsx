@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import {
 	ElementSpace,
 	ElementSplit,
@@ -18,6 +18,8 @@ const MenuGroup: React.FC<MenuGroupProps> = ({
 	elementSpace = 8,
 	split = [1],
 }) => {
+	const [isRenderSplit, setIsRenderSplit] = useState(false)
+	const [isRenderArray, setIsRenderArray] = useState(false)
 	useEffect(() => {
 		if (
 			children &&
@@ -35,18 +37,32 @@ const MenuGroup: React.FC<MenuGroupProps> = ({
 		}
 	}, [])
 
-	const renderSplitChildren = () => {
+	useEffect(() => {
 		if (!(children instanceof Array)) {
-			return <MenuGroupContainer>{children}</MenuGroupContainer>
+			setIsRenderArray(false)
+			return
 		}
 
 		if (
 			split.length === 1 ||
-			children?.length !== split.reduce((pre, val) => pre + val)
+			(children instanceof Array && children?.length) !==
+				split.reduce((pre, val) => pre + val)
 		) {
+			setIsRenderArray(true)
+		} else {
+			setIsRenderArray(true)
+			setIsRenderSplit(true)
+		}
+	})
+
+	const renderSplitChildren = () => {
+		if (!isRenderArray) {
+			return <MenuGroupContainer>{children}</MenuGroupContainer>
+		}
+		if (!isRenderSplit) {
 			return (
 				<MenuGroupContainer style={{ ...style }}>
-					{children?.map((child, index) => (
+					{(children as ReactNode[]).map((child, index) => (
 						<ElementSpace key={index} elementSpace={elementSpace}>
 							{child}
 						</ElementSpace>
@@ -56,7 +72,7 @@ const MenuGroup: React.FC<MenuGroupProps> = ({
 		}
 
 		const arr = split.map((num, index) => {
-			return children.slice(
+			return (children as ReactNode[]).slice(
 				index - 1 < 0 ? 0 : split[index - 1],
 				(index - 1 < 0 ? 0 : split[index - 1]) + num
 			)
