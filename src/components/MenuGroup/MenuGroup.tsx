@@ -57,8 +57,13 @@ const MenuGroup: React.FC<MenuGroupProps> = ({
 
 	const renderSplitChildren = () => {
 		if (!isRenderArray) {
-			return <MenuGroupContainer>{children}</MenuGroupContainer>
+			return (
+				<MenuGroupContainer style={{ ...style }}>
+					{children}
+				</MenuGroupContainer>
+			)
 		}
+
 		if (!isRenderSplit) {
 			return (
 				<MenuGroupContainer style={{ ...style }}>
@@ -78,7 +83,7 @@ const MenuGroup: React.FC<MenuGroupProps> = ({
 			)
 		})
 		return (
-			<MenuGroupContainer isSpaceBetween>
+			<MenuGroupContainer isSpaceBetween style={{ ...style }}>
 				{arr.map((item, index) => (
 					<ElementSplit key={index}>
 						<ElementSpace elementSpace={elementSpace}>

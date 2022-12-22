@@ -4,10 +4,9 @@ export const MenuGroupContainer = styled.div<{
 	isSpaceBetween?: boolean
 }>`
 	width: 100%;
-	height: 80px;
 	display: flex;
 	align-items: center;
-	padding: 0 14px;
+	padding: 8px 14px;
 	border-bottom: 2px solid rgba(0, 0, 0, 0.05);
 	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
 	justify-content: ${(props) => {
