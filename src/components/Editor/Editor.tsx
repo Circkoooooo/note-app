@@ -65,7 +65,7 @@ const Editor: React.FC<EditorProps> = ({ style, isPreview = false }) => {
 				return
 			}
 			// 新建
-			if (!id || !location.state.title) {
+			if (id && !location.state && !location.state?.id) {
 				routerToHome()
 				return
 			}
