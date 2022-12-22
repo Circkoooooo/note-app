@@ -50,6 +50,8 @@ export default function Home() {
 			<Layout className='site-layout'>
 				<Content
 					style={{
+						display: 'flex',
+						flexDirection: 'column',
 						minHeight: 280,
 						overflow: 'auto',
 					}}

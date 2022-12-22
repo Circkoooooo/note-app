@@ -1,5 +1,5 @@
 import { v4 } from 'uuid'
-import { Button, Input, Modal } from 'antd'
+import { Button, Empty, Input, Modal } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { useContext, useEffect, useState } from 'react'
 import MenuGroup from '../../components/MenuGroup/MenuGroup'
@@ -65,14 +65,30 @@ const Note = () => {
 	return (
 		<>
 			<MenuGroup elementSpace={8} split={[1]}>
-				<Button icon={<PlusOutlined />} onClick={newNote}>
+				<Button
+					icon={<PlusOutlined />}
+					onClick={newNote}
+					type='primary'
+				>
 					新建笔记
 				</Button>
 			</MenuGroup>
-			<NoteList
-				notes={notes}
-				onSelectNote={(note) => routerToPreview(note)}
-			/>
+			{notes.length === 0 ? (
+				<Empty
+					description='暂无笔记'
+					style={{
+						flex: 1,
+						display: 'flex',
+						flexDirection: 'column',
+						justifyContent: 'center',
+					}}
+				/>
+			) : (
+				<NoteList
+					notes={notes}
+					onSelectNote={(note) => routerToPreview(note)}
+				/>
+			)}
 			<Modal
 				title='新笔记标题'
 				open={isModalOpen}

@@ -1,7 +1,21 @@
+import { Empty } from 'antd'
 import { RouteProps } from 'react-router-dom'
 import { UserOutlined } from '@ant-design/icons'
 import Note from '../views/Note/Note'
 
+const EmptyPage = () => {
+	return (
+		<Empty
+			description='暂无内容'
+			style={{
+				flex: 1,
+				display: 'flex',
+				flexDirection: 'column',
+				justifyContent: 'center',
+			}}
+		/>
+	)
+}
 const siderRouterConfigs: {
 	[key: string]: any
 	route: RouteProps
@@ -22,7 +36,7 @@ const siderRouterConfigs: {
 		label: '测试',
 		route: {
 			path: 'test',
-			element: <div>ozmxzckz c</div>,
+			element: <EmptyPage />,
 		},
 	},
 	{
@@ -31,7 +45,7 @@ const siderRouterConfigs: {
 		label: '帮助',
 		route: {
 			path: 'help',
-			element: <div>t5555</div>,
+			element: <EmptyPage />,
 		},
 	},
 	{
@@ -40,7 +54,7 @@ const siderRouterConfigs: {
 		label: '设置',
 		route: {
 			path: 'setting',
-			element: <div>123213</div>,
+			element: <EmptyPage />,
 		},
 	},
 ]
