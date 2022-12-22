@@ -95,6 +95,7 @@ const Note = () => {
 				onOk={handleOk}
 				onCancel={handleCancel}
 				okText='确认'
+				cancelText='取消'
 			>
 				<Input
 					value={newNoteTitle}
