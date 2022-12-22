@@ -12,12 +12,23 @@ export const useNoteRouter = () => {
 	}
 
 	const routerToEdit = (note: NoteType) => {
+		if (!note) {
+			routerToHome()
+			return
+		}
 		navigate(`${NOTE_EDIT}?id=${note.id}`, {
 			state: note,
 		})
 	}
+	
 	const routerToPreview = (note: NoteType) => {
-		navigate(`${NOTE_PREVIEW}?id=${note.id}`)
+		if (!note) {
+			routerToHome()
+			return
+		}
+		navigate(`${NOTE_PREVIEW}?id=${note.id}`, {
+			state: note,
+		})
 	}
 
 	return {
