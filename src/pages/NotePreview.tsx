@@ -13,7 +13,8 @@ const NotePreview = () => {
 		<Layout
 			className='layout'
 			style={{
-				height: '100%',
+				overflow: 'hidden',
+				height: '100vh',
 			}}
 		>
 			<Header>
@@ -22,7 +23,8 @@ const NotePreview = () => {
 			<Content
 				style={{
 					padding: 20,
-					height: '100%',
+					minHeight: 'auto',
+					overflow: 'auto',
 				}}
 			>
 				<MenuGroup split={[1, 1]} style={{ marginBottom: 10 }}>

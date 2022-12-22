@@ -8,7 +8,8 @@ const NoteEditor = () => {
 		<Layout
 			className='layout'
 			style={{
-				minHeight: '100vh',
+				overflow: 'hidden',
+				height: '100vh',
 			}}
 		>
 			<Header>
@@ -16,14 +17,11 @@ const NoteEditor = () => {
 			</Header>
 			<Content
 				style={{
+					overflow: 'auto',
 					display: 'flex',
 				}}
 			>
-				<Editor
-					style={{
-						flex: '1',
-					}}
-				/>
+				<Editor />
 			</Content>
 		</Layout>
 	)
