@@ -13,6 +13,7 @@ export const MenuGroupContainer = styled.div<{
 		return props.isSpaceBetween ? 'space-between' : ''
 	}};
 	overflow-x: overlay;
+	white-space:nowrap;
 `
 
 /**
