@@ -2,8 +2,8 @@
 
 This is a off-the-line application to manage your notes.
 
-It have some ablities to makes the note general, such as `export note to Markdown`,`export note to Word` even `to excel`, and transform function such as `transform word to note`. 
-Actrually, It really like a common office application.
+It have some abilities to makes the note general, such as `export note to Markdown`,`export note to Word` even `to excel`, and transform function such as `transform word to note`. 
+Actually, It really like a common office application.
 
 ## Quick start
 
