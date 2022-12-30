@@ -4,17 +4,8 @@ import MdEditor from 'md-editor-rt'
 import { notification, Spin } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
 import { EditorContainer } from './EditorStyled'
-import {
-	getIdbDatabase,
-	IDBAddKeyValue,
-	IDBGetOneByKey,
-	IDBPutOne,
-} from '../../lib/idb'
-import IDBStoreContext, {
-	DATABASE_NAME,
-	IDBStoreDatabaseType,
-	STORE_NAME,
-} from '../../context/IDBStoreContext'
+import { getIdbDatabase, IDBAddKeyValue, IDBGetOneByKey, IDBPutOne } from '../../lib/idb'
+import IDBStoreContext, { DATABASE_NAME, IDBStoreDatabaseType, STORE_NAME } from '../../context/IDBStoreContext'
 import { NoteType } from '../../types/Note'
 import { useNoteRouter } from '../../hooks/useNoteRouter'
 
@@ -92,8 +83,7 @@ const Editor: React.FC<EditorProps> = ({ style, isPreview = false }) => {
 				setNoteObject(value)
 			} else {
 				api.error({
-					message:
-						'it was occured a unknown error, please try to refresh this page',
+					message: 'it was occured a unknown error, please try to refresh this page',
 				})
 			}
 		})
@@ -168,11 +158,7 @@ const Editor: React.FC<EditorProps> = ({ style, isPreview = false }) => {
 					style={presetEditorStyle}
 				/>
 			) : (
-				<MdEditor
-					previewOnly
-					modelValue={noteObject.rawText}
-					style={presetEditorStyle}
-				/>
+				<MdEditor previewOnly modelValue={noteObject.rawText} style={presetEditorStyle} />
 			)}
 		</EditorContainer>
 	) : (

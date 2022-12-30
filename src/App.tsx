@@ -1,10 +1,7 @@
 import { IDBPDatabase } from 'idb'
 import { useEffect, useState } from 'react'
 import { Route, Routes, useNavigate } from 'react-router-dom'
-import IDBStoreContext, {
-	DATABASE_NAME,
-	STORE_NAME,
-} from './context/IDBStoreContext'
+import IDBStoreContext, { DATABASE_NAME, STORE_NAME } from './context/IDBStoreContext'
 import { getIdbDatabase } from './lib/idb'
 import Home from './pages/Home'
 import NoteEditor from './pages/NoteEditor'

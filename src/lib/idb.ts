@@ -15,11 +15,7 @@ export type IDBOperate = {
 	value?: NoteType
 }
 
-export const getIdbDatabase = async (
-	databaseName: string,
-	storeName: string,
-	version: number = 1
-) => {
+export const getIdbDatabase = async (databaseName: string, storeName: string, version: number = 1) => {
 	const db = await openDB(databaseName, version, {
 		upgrade(database) {
 			if (!database.objectStoreNames.contains(storeName)) {
@@ -30,21 +26,12 @@ export const getIdbDatabase = async (
 	return db
 }
 
-export const IDBIsKeyValueExist: OP<IDBOperate> = async ({
-	db,
-	storeName,
-	key,
-}) => {
+export const IDBIsKeyValueExist: OP<IDBOperate> = async ({ db, storeName, key }) => {
 	const isExist = await db.get(storeName, key as unknown as any)
 	return isExist
 }
 
-export const IDBAddKeyValue: OP<IDBOperate> = async ({
-	db,
-	storeName,
-	key,
-	value,
-}) => {
+export const IDBAddKeyValue: OP<IDBOperate> = async ({ db, storeName, key, value }) => {
 	if (!key || !value) return false
 	if (
 		await IDBIsKeyValueExist({
@@ -58,11 +45,7 @@ export const IDBAddKeyValue: OP<IDBOperate> = async ({
 	return true
 }
 
-export const IDBDeleteKeyValue: OP<IDBOperate> = async ({
-	db,
-	storeName,
-	key,
-}) => {
+export const IDBDeleteKeyValue: OP<IDBOperate> = async ({ db, storeName, key }) => {
 	if (!key) return false
 	if (
 		await IDBIsKeyValueExist({
@@ -76,11 +59,7 @@ export const IDBDeleteKeyValue: OP<IDBOperate> = async ({
 	return true
 }
 
-export const IDBGetOneByKey: OP<IDBOperate, NoteType> = ({
-	db,
-	storeName,
-	key,
-}) => {
+export const IDBGetOneByKey: OP<IDBOperate, NoteType> = ({ db, storeName, key }) => {
 	return new Promise<NoteType>((resolve, reject) => {
 		if (!key) {
 			reject(new Error('no key'))
@@ -92,12 +71,7 @@ export const IDBGetOneByKey: OP<IDBOperate, NoteType> = ({
 	})
 }
 
-export const IDBPutOne: OP<IDBOperate, ValidKey> = ({
-	db,
-	storeName,
-	key,
-	value,
-}) => {
+export const IDBPutOne: OP<IDBOperate, ValidKey> = ({ db, storeName, key, value }) => {
 	return new Promise<ValidKey>((resolve, reject) => {
 		try {
 			db.put(storeName, value, key).then((res) => {

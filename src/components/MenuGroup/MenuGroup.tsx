@@ -1,9 +1,5 @@
 import React, { ReactNode, useEffect, useState } from 'react'
-import {
-	ElementSpace,
-	ElementSplit,
-	MenuGroupContainer,
-} from './MenuGroupStyled'
+import { ElementSpace, ElementSplit, MenuGroupContainer } from './MenuGroupStyled'
 
 interface MenuGroupProps {
 	style?: React.CSSProperties
@@ -12,20 +8,11 @@ interface MenuGroupProps {
 	split?: number[]
 }
 
-const MenuGroup: React.FC<MenuGroupProps> = ({
-	style,
-	children,
-	elementSpace = 8,
-	split = [1],
-}) => {
+const MenuGroup: React.FC<MenuGroupProps> = ({ style, children, elementSpace = 8, split = [1] }) => {
 	const [isRenderSplit, setIsRenderSplit] = useState(false)
 	const [isRenderArray, setIsRenderArray] = useState(false)
 	useEffect(() => {
-		if (
-			children &&
-			children instanceof Array &&
-			children.length !== split.reduce((pre, val) => pre + val)
-		) {
+		if (children && children instanceof Array && children.length !== split.reduce((pre, val) => pre + val)) {
 			console.warn(
 				`"split" param require a array that sum of all items should be equal to the count of children node. such as "split = [1,1], while the children will be 
 				<>
@@ -45,8 +32,7 @@ const MenuGroup: React.FC<MenuGroupProps> = ({
 
 		if (
 			split.length === 1 ||
-			(children instanceof Array && children?.length) !==
-				split.reduce((pre, val) => pre + val)
+			(children instanceof Array && children?.length) !== split.reduce((pre, val) => pre + val)
 		) {
 			setIsRenderArray(true)
 		} else {
@@ -57,11 +43,7 @@ const MenuGroup: React.FC<MenuGroupProps> = ({
 
 	const renderSplitChildren = () => {
 		if (!isRenderArray) {
-			return (
-				<MenuGroupContainer style={{ ...style }}>
-					{children}
-				</MenuGroupContainer>
-			)
+			return <MenuGroupContainer style={{ ...style }}>{children}</MenuGroupContainer>
 		}
 
 		if (!isRenderSplit) {
@@ -86,9 +68,7 @@ const MenuGroup: React.FC<MenuGroupProps> = ({
 			<MenuGroupContainer isSpaceBetween style={{ ...style }}>
 				{arr.map((item, index) => (
 					<ElementSplit key={index}>
-						<ElementSpace elementSpace={elementSpace}>
-							{item}
-						</ElementSpace>
+						<ElementSpace elementSpace={elementSpace}>{item}</ElementSpace>
 					</ElementSplit>
 				))}
 			</MenuGroupContainer>

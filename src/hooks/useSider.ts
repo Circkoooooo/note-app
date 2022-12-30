@@ -14,8 +14,7 @@ export default (configs: SiderRouterConfigsType[]) => {
 	const navigate = useNavigate()
 	useEffect(() => {
 		const config = configs.find((item) => item.key === currentKey)
-		const path =
-			config && config.route.path !== null ? config.route.path : '/'
+		const path = config && config.route.path !== null ? config.route.path : '/'
 		navigate(path)
 	}, [currentKey])
 

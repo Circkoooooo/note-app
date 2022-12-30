@@ -29,9 +29,7 @@ const NotePreview = () => {
 			>
 				<MenuGroup split={[1, 1]} style={{ marginBottom: 10 }}>
 					<Title level={4}> 预览</Title>
-					<Button onClick={() => routerToEdit(location.state)}>
-						编辑
-					</Button>
+					<Button onClick={() => routerToEdit(location.state)}>编辑</Button>
 				</MenuGroup>
 				<Editor isPreview />
 			</Content>

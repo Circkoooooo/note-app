@@ -20,7 +20,7 @@ export const useNoteRouter = () => {
 			state: note,
 		})
 	}
-	
+
 	const routerToPreview = (note: NoteType) => {
 		if (!note) {
 			routerToHome()
