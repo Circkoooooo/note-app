@@ -2,18 +2,20 @@ import styled from 'styled-components'
 
 export const MenuGroupContainer = styled.div<{
 	isSpaceBetween?: boolean
+	isShadow?: boolean
 }>`
 	width: 100%;
 	display: flex;
 	align-items: center;
 	padding: 8px 14px;
-	border-bottom: 2px solid rgba(0, 0, 0, 0.05);
-	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+	box-shadow: ${(props) => {
+		return props.isShadow ? '0px 4px 10px rgba(0, 0, 0, 0.05)' : ''
+	}};
 	justify-content: ${(props) => {
 		return props.isSpaceBetween ? 'space-between' : ''
 	}};
 	overflow-x: overlay;
-	white-space:nowrap;
+	white-space: nowrap;
 `
 
 /**

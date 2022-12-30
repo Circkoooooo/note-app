@@ -6,9 +6,10 @@ interface MenuGroupProps {
 	children?: ReactNode[] | ReactNode
 	elementSpace?: number
 	split?: number[]
+	isShadow?: boolean
 }
 
-const MenuGroup: React.FC<MenuGroupProps> = ({ style, children, elementSpace = 8, split = [1] }) => {
+const MenuGroup: React.FC<MenuGroupProps> = ({ style, children, elementSpace = 8, split = [1], isShadow = true }) => {
 	const [isRenderSplit, setIsRenderSplit] = useState(false)
 	const [isRenderArray, setIsRenderArray] = useState(false)
 	useEffect(() => {
@@ -43,12 +44,16 @@ const MenuGroup: React.FC<MenuGroupProps> = ({ style, children, elementSpace = 8
 
 	const renderSplitChildren = () => {
 		if (!isRenderArray) {
-			return <MenuGroupContainer style={{ ...style }}>{children}</MenuGroupContainer>
+			return (
+				<MenuGroupContainer isShadow={isShadow} style={{ ...style }}>
+					{children}
+				</MenuGroupContainer>
+			)
 		}
 
 		if (!isRenderSplit) {
 			return (
-				<MenuGroupContainer style={{ ...style }}>
+				<MenuGroupContainer isShadow={isShadow} style={{ ...style }}>
 					{(children as ReactNode[]).map((child, index) => (
 						<ElementSpace key={index} elementSpace={elementSpace}>
 							{child}
@@ -65,7 +70,7 @@ const MenuGroup: React.FC<MenuGroupProps> = ({ style, children, elementSpace = 8
 			)
 		})
 		return (
-			<MenuGroupContainer isSpaceBetween style={{ ...style }}>
+			<MenuGroupContainer isSpaceBetween isShadow={isShadow} style={{ ...style }}>
 				{arr.map((item, index) => (
 					<ElementSplit key={index}>
 						<ElementSpace elementSpace={elementSpace}>{item}</ElementSpace>
