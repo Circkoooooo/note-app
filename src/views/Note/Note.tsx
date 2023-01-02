@@ -23,6 +23,12 @@ const Note = () => {
 	const { routerToEdit, routerToPreview } = useNoteRouter()
 
 	const noteDb = useContext(IDBStoreContext)
+	
+	useEffect(()=>{
+		if(notes && notes !== calcNotes){
+			setCalcNotes(notes)
+		}
+	},[notes])
 
 	useEffect(() => {
 		;(async () => {
